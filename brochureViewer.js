@@ -114,16 +114,16 @@ var BrochureWidget = function(vars) {
     return;
   };
   o.pageSetup = function() {
-    var clickToZoom = function(target) {
-      target.addEventListener("click", function(e) {
-        o.clickToZoom(e, target, 2);
-      });
-    };
+    
 
     var j = 0;
     var h = 0;
 
     for (var i = 0; i < o.pages.length; i++) {
+      o.pages[i].style = ""; //get rid of any inline styles. needed for reinitialisation
+      o.pages[i].classList.remove("left", "right", "center");
+      
+
       if (o.brochureVars.doublePage) {
         //organize pages in slides-array
         if (!o.slides[j]) {
@@ -187,7 +187,25 @@ var BrochureWidget = function(vars) {
       }
 
       o.pages[i].className += " brochure-page";
-      if (o.brochureVars.zoom) clickToZoom(o.pages[i]);
+      
+
+
+      var clickToZoom = function(target) {
+        var clickHandler = function(e){
+          o.clickToZoom(e, target, 2);
+        }
+        o.pages[i].removeEventListener("click", clickHandler);
+        if (o.brochureVars.zoom) {
+          console.log("add")
+          console.log(target)
+          o.pages[i].addEventListener("click", clickHandler);
+          //target.removeEventListener("click", clickHandler);
+        }
+      };
+
+      clickToZoom(o.pages[i]);
+
+
     }
   };
   o.pinchToZoom = function(e, zoom) {
@@ -216,6 +234,8 @@ var BrochureWidget = function(vars) {
     }
   };
   o.clickToZoom = function(e, target, zoom) {
+    console.log(e)
+    console.log(target)
     var ignoreClick = false;
     if (!o.zoomedIn && !o.dragging) {
       var path = e.path || o.composedPath(e.target);
@@ -380,7 +400,7 @@ var BrochureWidget = function(vars) {
       setTimeout(function() {
         o.dragging = false;
       }, 50);
-    }
+    };
 
     function dragMove(e) {
       var clientX = e.clientX || e.touches[0].clientX;
@@ -416,6 +436,17 @@ var BrochureWidget = function(vars) {
       }
     }
   };
+  o.cssToHeader = function(){
+    console.log(o.brochureVars.zoom);
+    (document.getElementById("brochureCSS")) && document.querySelector("head").removeChild(document.getElementById("brochureCSS"));
+    
+    var css =
+    ".brochure-container .nozoom{cursor: auto;} .brochure-container{ display : -webkit-flex; display : flex; } .brochure-container img{ touch-action: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;} .dragging .brochure-page{ transition: all 0s; cursor: grab ; } .brochure-page{ position:relative; flex: 1 0 auto; -webkit-flex: 1 0 auto; left:0px; top:50%; transition: left 0.5s ease 0s, transform 0.1s; cursor:"+((o.brochureVars.zoom)?'zoom-in':'grab')+"} .zoomedIn .brochure-page{ cursor: zoom-out; } .zoomedIn.dragging .brochure-page{ cursor: grab ; } .brochure-page.left{ transform-origin : right center;} .brochure-page.right{ transform-origin : left center;} .brochure-page.center{ transform-origin : center center; } ";
+    var newStyle = document.createElement("style");
+    newStyle.id = "brochureCSS";
+    newStyle.innerHTML = css;
+    document.querySelector("head").appendChild(newStyle);
+  }
   o.init = (function() {
     o.brochureHolder.className = "brochure-container";
     o.pageRatio = o.brochureVars.doublePage ? (o.pageWidth * 2) / o.pageHeight : o.pageWidth / o.pageHeight;
@@ -434,6 +465,7 @@ var BrochureWidget = function(vars) {
       o.brochureLength = o.pages.length;
     }
 
+    o.cssToHeader();
     o.pageSetup();
 
     window.addEventListener("resize", o.resize);
@@ -444,12 +476,3 @@ var BrochureWidget = function(vars) {
   })();
 };
 
-//add CSS to header
-(function() {
-  var css =
-    ".brochure-container .nozoom{cursor: auto;} .brochure-container{ display : -webkit-flex; display : flex; } .brochure-container img{ touch-action: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;} .dragging .brochure-page{ transition: all 0s; cursor: grab ; } .brochure-page{ position:relative; flex: 1 0 auto; -webkit-flex: 1 0 auto; left:0px; top:50%; transition: left 0.5s ease 0s, transform 0.1s; cursor:zoom-in} .zoomedIn .brochure-page{ cursor: zoom-out; } .zoomedIn.dragging .brochure-page{ cursor: grab ; } .brochure-page.left{ transform-origin : right center;} .brochure-page.right{ transform-origin : left center;} .brochure-page.center{ transform-origin : center center; } ";
-  var newStyle = document.createElement("style");
-  newStyle.id = "brochureCSS";
-  newStyle.innerHTML = css;
-  document.querySelector("head").appendChild(newStyle);
-})();

@@ -24,6 +24,7 @@
             background-color: #ccc;
             border: 1px solid;
             box-sizing: border-box;
+            padding: 10%;
         }
 
         #myForm {
@@ -31,46 +32,101 @@
             left: 10%;
             z-index: 5;
         }
+        #controls{
+            position: absolute;
+            left: 10%;
+            bottom:80%;
+            width:80%;
+        }
+        #prev{
+            position: relative;
+            left: 0px;
+            width: fit-content;
+        }
+        #next{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
     </style>
 </head>
 
 <body>
     <form id="myForm" onchange="return resetBrochure()">
         <label>doublePageCover:
-            <select name="doublePageCover">
+            <select id="doublePageCover">
                 <option>true</option>
                 <option>false</option>
             </select>
         </label>
         <br>
         <label>doublePage:
-            <select name="doublePage">
+            <select id="doublePage">
                 <option>true</option>
                 <option>false</option>
             </select>
         </label>
         <br>
-        <label>zoom:
-            <select name="zoom">
+        <label>clickToZoom:
+            <select id="zoom">
                 <option>true</option>
                 <option>false</option>
             </select>
         </label>
     </form>
+    <div id="controls">
+        <div id="prev">prev Page</div>
+        <div id="next">next Page</div>
+    </div>
     <div id="brochure">
-        <div id="page1" class="page"></div>
-        <div id="page2" class="page"></div>
-        <div id="page3" class="page"></div>
-        <div id="page4" class="page"></div>
-        <div id="page5" class="page"></div>
-        <div id="page6" class="page"></div>
-        <div id="page7" class="page"></div>
-        <div id="page8" class="page"></div>
-        <div id="page9" class="page"></div>
+
+        <div class="page">
+            <h1>Page 1</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="page">
+            <h1>Page 2</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="page">
+            <h1>Page 3</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="page">
+            <h1>Page 4</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="page">
+            <h1>Page 5</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="page">
+            <h1>Page 6</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="page">
+            <h1>Page 7</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="page">
+            <h1>Page 8</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="page">
+            <h1>Page 9</h1>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        </div>
+
     </div>
 
     <script src="brochureViewer.js"></script>
     <script>
+        var pages = document.querySelectorAll(".page");
+        var doublePageCover = document.querySelector("#doublePageCover");
+
+        
+        
+
         var mybrochure = new BrochureWidget({
             brochureHolder: document.getElementById("brochure"),
             pageWidth: 600,
@@ -81,18 +137,18 @@
         });
 
         var resetBrochure = function () {
-            var doublePageCover = document.getElementsByName("doublePageCover")[0];
-            var doublePageCoverOnOff = 
 
-            console.log(e.options)
+            var el = document.getElementById('brochure'),
+            elClone = el.cloneNode(true);
+            el.parentNode.replaceChild(elClone, el);
 
             mybrochure = new BrochureWidget({
                 brochureHolder: document.getElementById("brochure"),
                 pageWidth: 600,
                 pageHeight: 800,
-                doublePage: true,
-                doublePageCover: true,
-                zoom: false
+                doublePage: (document.querySelector("#doublePage").value == "true"),
+                doublePageCover: (document.querySelector("#doublePageCover").value == "true"),
+                zoom: (document.querySelector("#zoom").value == "true")
             });
         }
 
